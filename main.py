@@ -104,30 +104,25 @@ while 1:
 
 
     dat, rate = librosa.load("audio.wav")
-    time = np.arange(0,len(dat))/rate
+    time1 = np.arange(0,len(dat))/rate
 
     plt.figure(figsize=(10, 16))
-    plt.subplot(3,1,1)
-    plt.plot(time,dat)
+    plt.subplot(2,1,1)
+    plt.plot(time1,dat)
     plt.title('Raw Audio File')
     plt.xlabel('Time (s)')
     plt.ylabel('Amplitude')
 
-    plt.subplot(3,1,2)
+    plt.subplot(2,1,2)
     freq = np.fft.fft(dat)
-    plt.plot(np.real(freq))
-    plt.title('FFT Plot - Real')
-    plt.xlabel('Frequency (Hz)')
-    plt.xlim(0,5000)
-    plt.ylabel('Amplitude')
-
-    plt.subplot(3,1,3)
-    plt.plot(np.imag(freq))
-    plt.title('FFT Plot - Imaginary')
+    plt.plot(abs(freq))
+    plt.title('FFT Plot - Magnitude')
     plt.xlabel('Frequency (Hz)')
     plt.xlim(0,5000)
     plt.ylabel('Amplitude')
     plt.show()
+
+
 
 
     with wv.open(name, 'r') as wav_file:
@@ -202,7 +197,7 @@ while 1:
     plt.ylabel('Amplitude')
 
     plt.subplot(2,1,2)
-    plt.plot(time,dat)
+    plt.plot(time1,dat)
     plt.title('Raw Audio File')
     plt.xlabel('Time (s)')
     plt.ylabel('Amplitude')
